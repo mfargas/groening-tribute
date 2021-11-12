@@ -1,0 +1,13 @@
+body {
+  margin: auto;
+  padding: 0;
+  background-color: #EDB8CF;
+  font-family: sans-serif;
+  text-align: right;
+  box-shadow: greenyellow 0 0 0 1rem inset;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: darkgreen;
+  background-image: url(../img/home-sweet-homer-Matt-Groening-631.webp);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.list{
+  width: 50vw;
+  margin: auto;
+}
+
+Badge{
+  margin: 1rem;
+}
+
