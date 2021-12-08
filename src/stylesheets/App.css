@@ -2,12 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -23,15 +17,76 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: hotpink;
+}
+
+.navigation{
+  color: hotpink;
+  position: fixed;
+  z-index: 5;
+  margin: auto;
+}
+
+a.nav-link.active{
+  background-color: greenyellow;
+}
+
+.mainTitle{
+  margin: 10% auto auto auto;
+  color: white;
+}
+
+h1{
+  margin: auto;
+  text-align: center;
 }
 
 .list{
   width: 50vw;
   margin: auto;
+  text-align: left;
 }
 
-Badge{
+ListGroup{
+  margin: auto;
+  text-align: center;
+}
+
+ListGroup{
+  margin: auto;
+  text-align: center;
+}
+.list-group-item{
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+span.badge{
   margin: 1rem;
+  text-align: right;
 }
 
+#gallery{
+  width: 60%;
+  margin: auto;
+}
+
+image{
+  width: 60%;
+}
+
+.timeline-tabs{
+  width: 90%;
+  margin: 5rem auto;
+}
+
+.tab-pane{
+  text-align: center;
+}
+
+.tab-pane > p{
+  max-width: 46rem;
+  text-align: right;
+  margin: auto;
+}
