@@ -1,70 +1,148 @@
-# Getting Started with Create React App
+# Matt Groening Tribute Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, interactive tribute website dedicated to Matt Groening, the creator of The Simpsons, Futurama, and Disenchantment.
 
-## Available Scripts
+## 🎨 Features
 
-In the project directory, you can run:
+### Modern Horizontal Scroll Design
 
-### `npm start`
+- **Smooth horizontal scrolling** between sections
+- **Interactive navigation** with animated transitions
+- **Responsive design** that works on all devices
+- **Visual scroll indicators** for easy navigation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Four Main Sections
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. **Hero Section** - Animated landing page with key statistics
+2. **Timeline Section** - Interactive career timeline with color-coded tabs
+3. **Gallery Section** - Image gallery with lightbox functionality
+4. **About Section** - Comprehensive information about Matt Groening
 
-### `npm test`
+### Interactive Elements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Wheel scroll navigation** between sections
+- **Click navigation** via top menu and scroll dots
+- **Hover animations** throughout the site
+- **Lightbox gallery** for image viewing
+- **Progress indicators** in timeline section
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Node.js (version 14 or higher)
+- npm or yarn
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+```bash
+# Clone the repository
+git clone [repository-url]
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Navigate to the project directory
+cd groening-tribute
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Install dependencies
+npm install
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Start the development server
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The application will open at `http://localhost:3000`
 
-## Learn More
+### Building for Production
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠️ Technology Stack
 
-### Code Splitting
+- **React 18** - Modern React with hooks
+- **CSS3** - Custom animations and responsive design
+- **Bootstrap 5** - UI components (minimal usage)
+- **Storybook** - Component development environment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📱 Responsive Design
 
-### Analyzing the Bundle Size
+The site is fully responsive and optimized for:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Desktop computers
+- Tablets
+- Mobile phones
+- Touch devices
 
-### Making a Progressive Web App
+## 🎯 Key Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Navigation
 
-### Advanced Configuration
+- Fixed navigation bar with smooth transitions
+- Visual scroll indicators on the right side
+- Keyboard and mouse wheel support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Animations
 
-### Deployment
+- Smooth section transitions
+- Hover effects on interactive elements
+- Loading animations for content
+- Parallax-like effects
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Performance
 
-### `npm run build` fails to minify
+- Optimized images and assets
+- Efficient CSS animations
+- Minimal JavaScript footprint
+- Fast loading times
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📂 Project Structure
+
+```
+src/
+├── components/
+│   ├── Hero.js          # Landing page component
+│   ├── Timeline.js      # Career timeline component
+│   ├── Gallery.js       # Image gallery component
+│   ├── Footer.js        # About section component
+│   └── TimelineContent/ # Timeline content components
+├── stylesheets/
+│   └── App.css         # Main stylesheet
+└── App.js              # Main application component
+```
+
+## 🎨 Design Philosophy
+
+The site features a modern, clean design with:
+
+- **Smooth animations** for enhanced user experience
+- **Color-coded sections** for easy navigation
+- **Typography hierarchy** for clear content structure
+- **Accessibility considerations** for all users
+
+## 🔧 Development
+
+### Available Scripts
+
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run storybook` - Start Storybook
+
+### Code Style
+
+- ESLint configuration included
+- Consistent code formatting
+- Component-based architecture
+- Modern React patterns
+
+## 📄 License
+
+This project is a fan-made tribute site. All images and content belong to their respective owners.
+
+## 🤝 Contributing
+
+Feel free to submit issues and enhancement requests!
+
+---
+
+**Note**: This is a tribute site created for educational and fan purposes. All content related to Matt Groening and his works belongs to their respective copyright holders.
