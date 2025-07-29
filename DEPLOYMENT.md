@@ -10,7 +10,7 @@ The error you encountered is due to Netlify using an outdated Ubuntu 16.04 build
 
 1. **`netlify.toml`** - Main Netlify configuration with legacy peer deps flag
 2. **`.nvmrc`** - Node.js version specification
-3. **`package.json`** - Fixed Storybook dependency conflicts
+3. **`package.json`** - Fixed dependency conflicts and added ajv dependency
 4. **Updated navigation** - Changed to show show names instead of generic labels
 
 ### Configuration Details:

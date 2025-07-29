@@ -10,6 +10,11 @@ body {
   line-height: 1.6;
   color: #333;
   overflow-x: hidden;
+  margin: auto;
+  padding: 0;
+  background-color: #EDB8CF;
+  text-align: right;
+  box-shadow: greenyellow 0 0 0 1rem inset;
 }
 
 /* App container */
@@ -83,10 +88,10 @@ body {
 
 /* Sections container */
 .sections-container {
-  width: 400vw;
+  width: 600vw;
   height: 100vh;
   display: flex;
-  transform: translateX(-300vw);
+  transform: translateX(0);
   transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -121,6 +126,261 @@ body {
   background-repeat: no-repeat;
 }
 
+/* Hero Section for Shows */
+.hero-section {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-section .hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* The Simpsons Background */
+.section:nth-child(2) .hero-background {
+  background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+  background-image: url(../img/Marge-Simpson.png);
+  background-size: contain;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+/* The Simpsons Font Styling */
+.section:nth-child(2) .hero-title {
+  font-family: 'Bangers', cursive;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0px #000, 6px 6px 0px #4CAF50;
+  color: #FFD93D;
+}
+
+.section:nth-child(2) .hero-subtitle {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  color: #4CAF50;
+  text-shadow: 2px 2px 0px #000;
+}
+
+.section:nth-child(2) .hero-description {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 8px 0 #4CAF50;
+}
+
+/* The Simpsons Outline */
+.section:nth-child(2) {
+  box-shadow: #4CAF50 0 0 0 1rem inset;
+}
+
+/* Futurama Background */
+.section:nth-child(3) .hero-background {
+  background: linear-gradient(135deg, #00BCD4 0%, #009688 100%);
+  background-image: url(../img/Leela-Futurama.png);
+  background-size: contain;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+/* Futurama Font Styling */
+.section:nth-child(3) .hero-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px #00BCD4, 0 0 40px #009688;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.section:nth-child(3) .hero-subtitle {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #00BCD4;
+  text-shadow: 0 0 10px #00BCD4;
+}
+
+.section:nth-child(3) .hero-description {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  background: rgba(0, 188, 212, 0.2);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid #00BCD4;
+  backdrop-filter: blur(10px);
+}
+
+/* Futurama Outline */
+.section:nth-child(3) {
+  box-shadow: #00BCD4 0 0 0 1rem inset;
+}
+
+/* Disenchantment Background */
+.section:nth-child(4) .hero-background {
+  background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+  background-image: url(../img/Princess-Bean.png);
+  background-size: contain;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+/* Disenchantment Font Styling */
+.section:nth-child(4) .hero-title {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px 0px #8B0000, 6px 6px 0px #B22222;
+  color: #F4A460;
+}
+
+.section:nth-child(4) .hero-subtitle {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.8rem;
+  color: #B22222;
+  text-shadow: 2px 2px 0px #8B0000;
+}
+
+.section:nth-child(4) .hero-description {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  background: rgba(139, 0, 0, 0.3);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 3px solid #B22222;
+  box-shadow: 0 8px 0 #8B0000;
+  position: relative;
+}
+
+.section:nth-child(4) .hero-description::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, #8B0000, #B22222);
+  border-radius: 20px;
+  z-index: -1;
+}
+
+/* Disenchantment Outline */
+.section:nth-child(4) {
+  box-shadow: #8B0000 0 0 0 1rem inset;
+}
+
+/* Timeline Background */
+.section:nth-child(5) {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding-top: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Game Background */
+.section:nth-child(6) {
+  background: linear-gradient(135deg, #FF6B35 0%, #FFD93D 100%);
+  padding-top: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Timeline Section Styling */
+.section:nth-child(5) .timeline {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.section:nth-child(5) .timeline-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section:nth-child(5) .timeline-header h2 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.section:nth-child(5) .timeline-header p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.section:nth-child(5) .timeline-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section:nth-child(5) .timeline-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.section:nth-child(5) .timeline-tab {
+  background: white;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+.section:nth-child(5) .timeline-content {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.section:nth-child(5) .content-wrapper h3 {
+  color: var(--tab-color);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.section:nth-child(5) .content-wrapper p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -139,6 +399,15 @@ body {
   padding: 2rem;
 }
 
+.hero-section .hero-content {
+  text-align: center;
+  color: white;
+  z-index: 10;
+  position: relative;
+  max-width: 800px;
+  padding: 2rem;
+}
+
 .hero-title {
   font-size: 4rem;
   font-weight: bold;
@@ -148,15 +417,65 @@ body {
   transform: translateY(30px);
 }
 
+.hero-section .hero-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
 .hero-subtitle {
   font-size: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   opacity: 0.9;
   opacity: 0;
   transform: translateY(30px);
 }
 
+.hero-section .hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  color: white;
+}
+
+.hero-description {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: left;
+  line-height: 1.8;
+}
+
+.hero-description p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.hero-section .hero-description {
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: left;
+  line-height: 1.8;
+  color: white;
+}
+
+.hero-section .hero-description p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  color: white;
+}
+
 .hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.hero-section .hero-stats {
   display: flex;
   justify-content: center;
   gap: 3rem;
@@ -216,14 +535,84 @@ body {
   60% { transform: translateY(-5px); }
 }
 
-/* Timeline Section */
-.timeline {
+/* Biography Section */
+.biography {
   width: 100%;
   height: 100%;
   padding: 6rem 2rem 2rem;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   overflow-y: auto;
 }
+
+.biography-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.biography-header h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.biography-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.biography-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bio-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.bio-section h3 {
+  color: #FFD93D;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.bio-section p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.bio-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.stat-item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #FFD93D;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+
 
 .timeline-header {
   text-align: center;

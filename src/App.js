@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
+import TheSimpsons from './components/TheSimpsons';
+import Futurama from './components/Futurama';
+import Disenchantment from './components/Disenchantment';
 import Timeline from './components/Timeline';
-import Gallery from './components/Gallery';
-import Footer from './components/Footer';
+import Game from './components/Game';
 import './stylesheets/App.css';
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
       setIsScrolling(true);
       setTimeout(() => setIsScrolling(false), 1000);
 
-      if (e.deltaY > 0 && currentSection < 3) {
+      if (e.deltaY > 0 && currentSection < 5) {
         setCurrentSection(prev => prev + 1);
       } else if (e.deltaY < 0 && currentSection > 0) {
         setCurrentSection(prev => prev - 1);
@@ -30,7 +32,7 @@ function App() {
   useEffect(() => {
     const sectionsContainer = document.querySelector('.sections-container');
     if (sectionsContainer) {
-      const translateX = -(3 - currentSection) * 100;
+      const translateX = -currentSection * 100;
       sectionsContainer.style.transform = `translateX(${translateX}vw)`;
     }
   }, [currentSection]);
@@ -58,30 +60,50 @@ function App() {
           >
             Disenchantment
           </button>
+          <button
+            className={`nav-link ${currentSection === 4 ? 'active' : ''}`}
+            onClick={() => setCurrentSection(4)}
+          >
+            Timeline
+          </button>
+          <button
+            className={`nav-link ${currentSection === 5 ? 'active' : ''}`}
+            onClick={() => setCurrentSection(5)}
+          >
+            Game
+          </button>
         </div>
       </nav>
 
       <div className="sections-container">
-        <section className="section hero-section">
+        <section className="section">
           <Hero />
         </section>
 
-        <section className="section timeline-section">
+        <section className="section">
+          <TheSimpsons />
+        </section>
+
+        <section className="section">
+          <Futurama />
+        </section>
+
+        <section className="section">
+          <Disenchantment />
+        </section>
+
+        <section className="section">
           <Timeline />
         </section>
 
-        <section className="section gallery-section">
-          <Gallery />
-        </section>
-
-        <section className="section footer-section">
-          <Footer />
+        <section className="section">
+          <Game />
         </section>
       </div>
 
       <div className="scroll-indicator">
         <div className="scroll-dots">
-          {[0, 1, 2, 3].map((index) => (
+          {[0, 1, 2, 3, 4, 5].map((index) => (
             <div
               key={index}
               className={`scroll-dot ${currentSection === index ? 'active' : ''}`}
