@@ -73,6 +73,37 @@
   font-size: 0.9rem;
 }
 
+.character-ability {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: linear-gradient(45deg, #4CAF50, #8BC34A);
+  color: white;
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.completion-celebration {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  color: #333;
+  border-radius: 10px;
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+  animation: celebration-pulse 2s ease-in-out infinite;
+}
+
+@keyframes celebration-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
 .game-area {
   position: relative;
   display: flex;

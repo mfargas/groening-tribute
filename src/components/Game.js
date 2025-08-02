@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import './Game.css';
+import pcWalkDown from '../img/pc-walk-down.png';
 
 const Game = () => {
   const [player, setPlayer] = useState({
@@ -15,8 +16,25 @@ const Game = () => {
   const [gameState, setGameState] = useState({
     score: 0,
     level: 1,
-    isPlaying: false
+    isPlaying: false,
+    collectiblesCollected: 0,
+    totalCollectibles: 5,
+    allCollectiblesFound: false
   });
+
+  const [collectibles, setCollectibles] = useState([
+    { id: 1, x: 100, y: 100, type: 'donut', collected: false },
+    { id: 2, x: 300, y: 200, type: 'slurm', collected: false },
+    { id: 3, x: 500, y: 150, type: 'beer', collected: false },
+    { id: 4, x: 200, y: 350, type: 'duff', collected: false },
+    { id: 5, x: 600, y: 300, type: 'krusty', collected: false }
+  ]);
+
+  const [obstacles, setObstacles] = useState([
+    { id: 1, x: 150, y: 150, width: 40, height: 40, type: 'rock' },
+    { id: 2, x: 400, y: 250, width: 60, height: 30, type: 'log' },
+    { id: 3, x: 650, y: 100, width: 50, height: 50, type: 'bush' }
+  ]);
 
   const canvasRef = useRef(null);
   const gameLoopRef = useRef(null);
@@ -28,6 +46,7 @@ const Game = () => {
       color: '#4CAF50',
       sprite: '👩‍🦱',
       speed: 3,
+      ability: 'Maternal Instinct - Collects items from further away',
       spriteImage: null,
       spriteSheet: null
     },
@@ -36,6 +55,7 @@ const Game = () => {
       color: '#00BCD4',
       sprite: '👁️',
       speed: 4,
+      ability: 'Cyclops Vision - Sees through obstacles',
       spriteImage: null,
       spriteSheet: null
     },
@@ -44,6 +64,7 @@ const Game = () => {
       color: '#8B0000',
       sprite: '👸',
       speed: 2,
+      ability: 'Royal Charm - Items give bonus points',
       spriteImage: null,
       spriteSheet: null
     }
@@ -54,12 +75,28 @@ const Game = () => {
     const loadSpriteSheet = () => {
       const img = new Image();
       img.onload = () => {
-        // Update sprite sheet for all characters
+        // Calculate sprite dimensions based on the actual image
+        const totalFrames = 2; // pc-walk-down.png has 2 frames
+        const frameWidth = img.width / totalFrames;
+        const frameHeight = img.height;
+
+        // Update sprite sheet and dimensions for all characters
         characters.marge.spriteSheet = img;
+        characters.marge.spriteWidth = frameWidth;
+        characters.marge.spriteHeight = frameHeight;
+        characters.marge.totalFrames = totalFrames;
+
         characters.leela.spriteSheet = img;
+        characters.leela.spriteWidth = frameWidth;
+        characters.leela.spriteHeight = frameHeight;
+        characters.leela.totalFrames = totalFrames;
+
         characters.bean.spriteSheet = img;
+        characters.bean.spriteWidth = frameWidth;
+        characters.bean.spriteHeight = frameHeight;
+        characters.bean.totalFrames = totalFrames;
       };
-      img.src = '/src/img/pc-walk-down.png';
+      img.src = pcWalkDown;
     };
     loadSpriteSheet();
   }, [characters]);
@@ -113,9 +150,13 @@ const Game = () => {
 
       // Update animation frame if moved
       if (moved && currentTime - player.lastMoveTime > 150) {
-        newPlayer.animationFrame = (player.animationFrame + 1) % 4;
+        const char = characters[player.character];
+        const totalFrames = char.totalFrames || 2; // Default to 2 frames if not loaded yet
+        newPlayer.animationFrame = (player.animationFrame + 1) % totalFrames;
         newPlayer.lastMoveTime = currentTime;
         newPlayer.isMoving = true;
+
+        // Movement doesn't give points - only accomplishments do
       } else if (!moved) {
         newPlayer.isMoving = false;
         newPlayer.animationFrame = 0;
@@ -128,20 +169,74 @@ const Game = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [player, gameState.isPlaying, characters]);
 
-  // Game loop
+  // Game loop - removed automatic score increment
   useEffect(() => {
     if (!gameState.isPlaying) return;
 
     const gameLoop = () => {
-      setGameState(prev => ({
-        ...prev,
-        score: prev.score + 1
-      }));
+      // Game loop can be used for other periodic updates if needed
+      // Score is now only earned through collectibles and other actions
     };
 
     gameLoopRef.current = setInterval(gameLoop, 100);
     return () => clearInterval(gameLoopRef.current);
   }, [gameState.isPlaying]);
+
+  // Check for collectibles and obstacles
+  useEffect(() => {
+    if (!gameState.isPlaying) return;
+
+    const checkCollisions = () => {
+      const char = characters[player.character];
+      const spriteWidth = char.spriteWidth || 32;
+      const spriteHeight = char.spriteHeight || 32;
+
+      // Check collectibles
+      setCollectibles(prev => prev.map(collectible => {
+        if (!collectible.collected) {
+          const distance = Math.sqrt(
+            Math.pow(player.x - collectible.x, 2) +
+            Math.pow(player.y - collectible.y, 2)
+          );
+
+          // Character-specific collection ranges and bonuses
+          let collectionRange = 30;
+          let scoreBonus = 50;
+
+          if (player.character === 'marge') {
+            collectionRange = 40; // Maternal instinct - longer range
+          } else if (player.character === 'bean') {
+            scoreBonus = 75; // Royal charm - bonus points
+          }
+
+          if (distance < collectionRange) {
+            const newCollectiblesCollected = gameState.collectiblesCollected + 1;
+            let finalScoreBonus = scoreBonus;
+
+            // Bonus for completing all collectibles
+            if (newCollectiblesCollected === gameState.totalCollectibles) {
+              finalScoreBonus += 200; // Completion bonus
+              setGameState(prevState => ({
+                ...prevState,
+                allCollectiblesFound: true
+              }));
+            }
+
+            setGameState(prevState => ({
+              ...prevState,
+              score: prevState.score + finalScoreBonus,
+              collectiblesCollected: newCollectiblesCollected
+            }));
+            return { ...collectible, collected: true };
+          }
+        }
+        return collectible;
+      }));
+    };
+
+    const collisionInterval = setInterval(checkCollisions, 100);
+    return () => clearInterval(collisionInterval);
+  }, [player, gameState.isPlaying, characters]);
 
   // Render game
   useEffect(() => {
@@ -171,16 +266,16 @@ const Game = () => {
     const char = characters[player.character];
 
     if (char.spriteSheet) {
-      // Draw sprite sheet with animation
-      const spriteWidth = 32;
-      const spriteHeight = 32;
+      // Draw sprite sheet with animation using actual dimensions
+      const spriteWidth = char.spriteWidth || 32;
+      const spriteHeight = char.spriteHeight || 32;
       const frameX = player.animationFrame * spriteWidth;
-      const frameY = 0; // Assuming it's a horizontal sprite sheet
+      const frameY = 0; // Horizontal sprite sheet
 
       ctx.drawImage(
         char.spriteSheet,
         frameX, frameY, spriteWidth, spriteHeight,
-        player.x - 16, player.y - 16, spriteWidth, spriteHeight
+        player.x - spriteWidth / 2, player.y - spriteHeight / 2, spriteWidth, spriteHeight
       );
     } else {
       // Fallback to emoji sprite
@@ -190,15 +285,57 @@ const Game = () => {
       ctx.fillText(char.sprite, player.x, player.y);
     }
 
+    // Draw collectibles
+    collectibles.forEach(collectible => {
+      if (!collectible.collected) {
+        ctx.fillStyle = '#FFD700';
+        ctx.beginPath();
+        ctx.arc(collectible.x, collectible.y, 8, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Draw collectible type
+        ctx.fillStyle = '#fff';
+        ctx.font = '10px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(collectible.type.charAt(0).toUpperCase(), collectible.x, collectible.y + 3);
+      }
+    });
+
+    // Draw obstacles
+    obstacles.forEach(obstacle => {
+      ctx.fillStyle = '#8B4513';
+      ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+
+      // Draw obstacle type
+      ctx.fillStyle = '#fff';
+      ctx.font = '8px monospace';
+      ctx.textAlign = 'center';
+      ctx.fillText(obstacle.type, obstacle.x + obstacle.width / 2, obstacle.y + obstacle.height / 2 + 2);
+    });
+
     // Draw character name
     ctx.fillStyle = '#fff';
     ctx.font = '12px monospace';
     ctx.textAlign = 'center';
     ctx.fillText(char.name, player.x, player.y + 25);
-  }, [player, characters]);
+  }, [player, characters, collectibles, obstacles]);
 
   const startGame = () => {
-    setGameState(prev => ({ ...prev, isPlaying: true, score: 0 }));
+    setGameState(prev => ({
+      ...prev,
+      isPlaying: true,
+      score: 0,
+      collectiblesCollected: 0,
+      allCollectiblesFound: false
+    }));
+    // Reset collectibles
+    setCollectibles([
+      { id: 1, x: 100, y: 100, type: 'donut', collected: false },
+      { id: 2, x: 300, y: 200, type: 'slurm', collected: false },
+      { id: 3, x: 500, y: 150, type: 'beer', collected: false },
+      { id: 4, x: 200, y: 350, type: 'duff', collected: false },
+      { id: 5, x: 600, y: 300, type: 'krusty', collected: false }
+    ]);
   };
 
   const stopGame = () => {
@@ -210,6 +347,7 @@ const Game = () => {
 
   const switchCharacter = (character) => {
     setPlayer(prev => ({ ...prev, character }));
+    // Character switching is free - no points for just switching
   };
 
   return (
@@ -246,8 +384,21 @@ const Game = () => {
       <div className="game-stats">
         <span>Score: {gameState.score}</span>
         <span>Character: {characters[player.character].name}</span>
+        <span>Collectibles: {gameState.collectiblesCollected}/{gameState.totalCollectibles}</span>
         <span>Position: ({player.x}, {player.y})</span>
       </div>
+
+      <div className="character-ability">
+        <strong>Ability:</strong> {characters[player.character].ability}
+      </div>
+
+      {gameState.allCollectiblesFound && (
+        <div className="completion-celebration">
+          🎉 <strong>ALL COLLECTIBLES FOUND!</strong> 🎉
+          <br />
+          <small>You've completed the tribute collection!</small>
+        </div>
+      )}
 
       <div className="game-area">
         <canvas
@@ -277,9 +428,10 @@ const Game = () => {
         <p>This is an <strong>interactive tribute game</strong> where you can:</p>
         <ul>
           <li><strong>Move around</strong> in an 8-bit style world</li>
+          <li><strong>Collect items</strong> from Matt Groening's shows (donuts, slurm, beer, duff, krusty)</li>
           <li><strong>Switch between characters</strong> from different shows</li>
           <li><strong>Explore</strong> the tribute site in a fun, interactive way</li>
-          <li><strong>Collect points</strong> while moving around</li>
+          <li><strong>Score points</strong> by collecting items and moving around</li>
         </ul>
         <h3>Controls:</h3>
         <ul>
